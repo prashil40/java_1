@@ -7,9 +7,9 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 //        exercise1();
+//        exercise2();
 
-        exercise2();
-
+        Exercise3.exercise3();
     }
 
 
@@ -65,6 +65,7 @@ public class Main {
 
     }
 
+
     private static void listExercise() {
         // ArrayList
         System.out.println("ArrayList: ");
@@ -74,7 +75,7 @@ public class Main {
         list1.add("XYZ");
         list1.add("ABC");
 
-        printList(list1);
+        HelperClass.printList(list1);
 
 
         // LinkedList
@@ -84,7 +85,7 @@ public class Main {
             lList.add(list1.get(i));
         }
         System.out.println("\nLinked List:");
-        printList(lList);
+        HelperClass.    printList(lList);
 
 
         // Print list using iterator
@@ -102,7 +103,7 @@ public class Main {
         set1.add("Samsung");
         set1.add("Nothing");
 
-        printSet(set1, "Initial set: ");
+        HelperClass.printSet(set1, "Initial set: ");
 
         if(!set1.add("Iphone")){
             System.out.println("\nDuplicate element was not added");
@@ -126,37 +127,23 @@ public class Main {
         System.out.println("\n");
 
         // HashSet with Users
-        User[] arrOfUser = {
-                new User("John", "john@gmail.com", true),
-                new User("Doe", "doe@gmail.com", true),
-                new User("Jane", "jane@gmail.com", true),
-                new User("Jane Doe", "janedoe@gmail.com", true),
-                new User("John Doe", "jane@gmail.com", true),
-                new User("John Krasinski", "johnK@gmail.com", true)
-        };
+        User[] arrOfUser = HelperClass.getArrayOfUser();
 
         System.out.println("arrOfUser.length = " + arrOfUser.length);
-        printList(Arrays.stream(arrOfUser).toList());
+        HelperClass.printList(Arrays.stream(arrOfUser).toList());
         Set<User> uniqueUsers = new HashSet<User>();
         for (User u : arrOfUser){
             uniqueUsers.add(u);
         }
 
-        printSet(uniqueUsers, "Unique Users: " + uniqueUsers.size());
+        HelperClass.printSet(uniqueUsers, "Unique Users: " + uniqueUsers.size());
 
 
     }
 
     private static void mapExercise() {
 
-        User[] arrOfUser = {
-                new User("John", "john@gmail.com", true),
-                new User("Doe", "doe@gmail.com", true),
-                new User("Jane", "jane@gmail.com", true),
-                new User("Jane Doe", "janedoe@gmail.com", true),
-                new User("John Doe", "jane@gmail.com", true),
-                new User("John Krasinski", "johnK@gmail.com", true)
-        };
+        User[] arrOfUser = HelperClass.getArrayOfUser();
 
         Map<String, User> userMap = new HashMap<String, User>();
         for (User user: arrOfUser) {
@@ -184,16 +171,7 @@ public class Main {
 
     }
 
-    private static void printSet(Set<?> set1, String message) {
-        System.out.println("\n"+message);
-        for (Object phone: set1){
-            System.out.println(phone);
-        }
-    }
 
-    private static void printList(List<?> list1) {
-        for (int i = 0; i < list1.size(); i++) {
-            System.out.println(list1.get(i));
-        }
-    }
+
+
 }
