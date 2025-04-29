@@ -1,17 +1,26 @@
-import java.sql.Array;
+import javax.xml.transform.Source;
 import java.time.ZonedDateTime;
+import java.util.*;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+//        exercise1();
+
+        exercise2();
+
+    }
+
+
+    public static void exercise1(){
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
 
 
 
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
+        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
+        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
 
         // Normal user
 
@@ -45,9 +54,146 @@ public class Main {
         sAdmin.updateAdvancedUserPermissions(user3);
         System.out.println("\nUpdated User 3 => " + user3.toString());
 
+    }
+
+    private static void exercise2() {
+        listExercise();
+
+        setExercise();
+
+        mapExercise();
+
+    }
+
+    private static void listExercise() {
+        // ArrayList
+        System.out.println("ArrayList: ");
+        List<String> list1 = new ArrayList<String>();
+        list1.add("ABC");
+        list1.add("DEF");
+        list1.add("XYZ");
+        list1.add("ABC");
+
+        printList(list1);
 
 
+        // LinkedList
+        List<String> lList = new LinkedList<String>();
+
+        for (int i = 0; i < list1.size(); i++) {
+            lList.add(list1.get(i));
+        }
+        System.out.println("\nLinked List:");
+        printList(lList);
 
 
+        // Print list using iterator
+        Iterator<String> it = lList.iterator();
+        System.out.println("\n");
+        while(it.hasNext()){
+            System.out.println(it.next());
+        }
+    }
+
+    private static void setExercise() {
+        Set<String> set1 = new HashSet<String>();
+        set1.add("Iphone");
+        set1.add("Pixel");
+        set1.add("Samsung");
+        set1.add("Nothing");
+
+        printSet(set1, "Initial set: ");
+
+        if(!set1.add("Iphone")){
+            System.out.println("\nDuplicate element was not added");
+        }
+
+//        printSet(set1, "After: ");
+
+        // search Samsung in the set.
+        if(set1.contains("Samsung")) {
+            System.out.println("Found Samsung in the set");
+        } else {
+            System.out.println("Couldn't find Samsung in the set");
+        }
+
+        if(set1.contains("Blackberry")){
+            System.out.println("Found Blackberry in the set");
+        }
+        else {
+            System.out.println("Couldn't find Blackberry in the set");
+        }
+        System.out.println("\n");
+
+        // HashSet with Users
+        User[] arrOfUser = {
+                new User("John", "john@gmail.com", true),
+                new User("Doe", "doe@gmail.com", true),
+                new User("Jane", "jane@gmail.com", true),
+                new User("Jane Doe", "janedoe@gmail.com", true),
+                new User("John Doe", "jane@gmail.com", true),
+                new User("John Krasinski", "johnK@gmail.com", true)
+        };
+
+        System.out.println("arrOfUser.length = " + arrOfUser.length);
+        printList(Arrays.stream(arrOfUser).toList());
+        Set<User> uniqueUsers = new HashSet<User>();
+        for (User u : arrOfUser){
+            uniqueUsers.add(u);
+        }
+
+        printSet(uniqueUsers, "Unique Users: " + uniqueUsers.size());
+
+
+    }
+
+    private static void mapExercise() {
+
+        User[] arrOfUser = {
+                new User("John", "john@gmail.com", true),
+                new User("Doe", "doe@gmail.com", true),
+                new User("Jane", "jane@gmail.com", true),
+                new User("Jane Doe", "janedoe@gmail.com", true),
+                new User("John Doe", "jane@gmail.com", true),
+                new User("John Krasinski", "johnK@gmail.com", true)
+        };
+
+        Map<String, User> userMap = new HashMap<String, User>();
+        for (User user: arrOfUser) {
+            userMap.put(user.email, user);
+        }
+
+        System.out.println("\nCreated user map:");
+        for(String email: userMap.keySet()){
+            System.out.println(email + " ==> " + userMap.get(email).name);
+        }
+
+        // find user based on key (email)
+
+        if(userMap.containsKey("john@gmail.com")){
+            System.out.println("\nFound the key");
+        }
+
+        Set<Map.Entry<String, User>> users = userMap.entrySet();
+
+        for ( Map.Entry<String, User> entry : users){
+            System.out.println("Key => " + entry.getKey());
+            System.out.println("Value => " + entry.getValue().name);
+            System.out.println();
+        }
+
+    }
+
+    private static void printSet(Set<?> set1, String message) {
+        System.out.println("\n"+message);
+        for (Object phone: set1){
+            System.out.println(phone);
+        }
+    }
+
+    private static void printList(List<?> list1) {
+        for (int i = 0; i < list1.size(); i++) {
+            System.out.println(list1.get(i));
+        }
     }
 }

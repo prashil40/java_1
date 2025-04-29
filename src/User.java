@@ -42,4 +42,19 @@ public class User {
             return "User is not active";
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof User){
+            User user = (User) obj;
+            return user.email.toLowerCase().equals(this.email.toLowerCase());
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return email.toLowerCase().hashCode();
+    }
 }
