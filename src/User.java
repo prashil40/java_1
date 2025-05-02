@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
+
 public class User {
     String name;
     String email;
@@ -37,7 +38,7 @@ public class User {
     @Override
     public String toString() {
         if(active) {
-            return "Name: " + name + "\nEmail: " + email;
+            return "Name: " + name + " | Email: " + email;
         } else {
             return "User is not active";
         }
